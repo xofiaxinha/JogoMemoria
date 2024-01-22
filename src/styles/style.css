@@ -1,5 +1,13 @@
 @import url(reset.css);
 
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: linear-gradient(#e8e1db);
+    user-select: none;
+}
 .container{
     position: relative;
     display: flex;
@@ -34,14 +42,13 @@ h2{
 }
 
 .game{
-    width: 400px;
-    height: 400px;
-    display: flex;
-    flex-wrap: wrap;
+    width: 430px;
+    height: 430px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     transform-style: preserve-3d;
     perspective: 500px;
-    border: 1px solid #c08552;
 }
 .item{
     position: relative;
@@ -50,4 +57,27 @@ h2{
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+
+    font-size: 3em;
+    transform: rotateY(180deg);
+    transition: 0.25s;
+}
+.item::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgb(45, 44, 44);
+    opacity: 0.9;
+    transition: 0.5s;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+}
+.item.open{
+    transform: rotateY(0deg);
+}
+.open::after{
+    transform: rotateY(180deg);
 }
